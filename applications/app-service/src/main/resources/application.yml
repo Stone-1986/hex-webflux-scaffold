@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  shutdown:
+    grace-period: 15s        # apagado elegante
+  compression:
+    enabled: true
+    min-response-size: 2KB
+    mime-types: application/json,text/html
+  error:
+    include-message: never
+    include-binding-errors: never
+
+spring:
+  main:
+    web-application-type: reactive
+  webflux:
+    problemdetails:
+      enabled: true          # Habilita Problem Details (RFC-7807) para errores (400/404/500, etc.).
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.r2dbc.R2dbcDataAutoConfiguration
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.web.reactive.function.client.ExchangeFunctions: INFO
+    reactor.netty.http.server: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true         # readiness/liveness

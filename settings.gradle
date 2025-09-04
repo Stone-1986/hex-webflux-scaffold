@@ -1,0 +1,9 @@
+rootProject.name = 'hex-webflux-scaffold'
+
+include(
+        'domain:model',
+        'domain:usecase',
+        'infrastructure:entry-points:reactive-web',
+        'infrastructure:driven-adapters:postgresql-repository',
+        'applications:app-service'
+)
